@@ -1,37 +1,27 @@
-/* ====== Reset and base styles ====== */
+  /* ====== Reset and base styles ====== */
   html, body {
-    margin: 0; padding: 0;
-    font-family: Arial, sans-serif;
-    scroll-behavior: smooth;
+    margin: 0; padding: 0; font-family: Arial, sans-serif; scroll-behavior: smooth;
     background: #fff;
     height: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-    touch-action: pan-y;
   }
 
   /* ================= NAVBAR from SECOND code ================= */
   nav.navbar {
     position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
+    top: 0; left: 0; width: 100%;
     height: 90px;
     background: #fcf8f8;
     display: flex;
     align-items: center;
-    padding: 0 40px;
+    padding: 0 40px; /* Same padding for both 700-1199 and 1200+ */
     box-sizing: border-box;
     box-shadow: 0 2px 12px rgba(100,100,100,0.04);
     z-index: 1000;
     justify-content: space-between;
     transition: padding 0.3s ease;
   }
-  @media (max-width: 699px) {
-    nav.navbar {
-      padding: 0 12px;
-      width: 100vw;
-    }
-  }
+
+  /* Logo + company container */
   .navbar .logo {
     display: flex;
     align-items: center;
@@ -52,6 +42,8 @@
     white-space: nowrap;
     transition: font-size 0.3s ease;
   }
+
+  /* Nav tabs */
   .navbar .nav-tabs {
     display: flex;
     flex-grow: 1;
@@ -79,6 +71,8 @@
     background-color: #aaa8a8;
     outline: none;
   }
+
+  /* Right tools container (search + contact) */
   .navbar .right-tools {
     display: flex;
     align-items: center;
@@ -129,9 +123,13 @@
     color: #000;
     outline: none;
   }
+
+  /* Hide hamburger menu button above 700px */
   .navbar .menu-toggle {
     display: none;
   }
+
+  /* Below 700px: show hamburger menu instead */
   @media (max-width: 699px) {
     .navbar .nav-tabs,
     .navbar .right-tools {
@@ -180,7 +178,7 @@
     }
   }
 
-  /* ================= MOBILE MENU OVERLAY ================= */
+  /* ================= MOBILE MENU OVERLAY from SECOND code ================= */
   .mobile-menu-overlay {
     position: fixed;
     inset: 0;
@@ -263,15 +261,11 @@
     white-space: nowrap;
   }
 
-  /* ================= SLIDER and CONTENT ================= */
-  .slider {
-    width: 100vw;
-    margin-top: 90px;
-    min-height: 470px;
-    display: flex;
-    background: #222;
-    overflow-x: hidden;
-  }
+  /* ================= SLIDER and CONTENT from FIRST code ================= */
+  /* Your original styles for slides, sections, footer ... copied below */
+
+  /* ================= SLIDE 2 (Banner) ================= */
+  .slider { width: 100%; margin-top: 90px; min-height: 470px; display: flex; background: #222;}
   .slide {
     width: 100%;
     min-height: 450px; height: auto;
@@ -286,6 +280,7 @@
   }
   .slide-content-left h2 { font-weight: bold; font-size: clamp(31px, 5vw, 46px); margin-bottom: 18px; line-height: 1.12; word-break: break-word;}
   .slide-subtext { display: flex; flex-direction: column; font-size: 20px; line-height: 1.25; margin-bottom: 30px; word-break: break-word;}
+  /* Updated Contact Btn Responsive */
   .slide-content-left .contact-btn {
     height: 42px;
     width: 180px;
@@ -298,7 +293,6 @@
     transition: width 0.2s, font-size 0.2s, height 0.2s;
   }
   .slide-content-left .contact-btn:hover { background-color: #b7b9b8 !important; }
-
   @media (max-width: 900px) {
     .slider, .slide { min-height: 310px; padding: 6vw 2vw;}
     .slide-content-left { max-width: 100vw; }
@@ -319,14 +313,12 @@
     }
   }
 
-  /* ================= SLIDE 3: SERVICES (with updated image CSS) ================= */
+  /* ================= SLIDE 3: SERVICES ================= */
   .slide-3 {
-    width: 100vw;
-    background: #fff;
+    width: 100%; background: #fff;
     padding: 55px 15vw 40px 15vw;
     box-sizing: border-box;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    overflow-x: hidden;
   }
   .slide3-header-section {
     max-width: 1100px; margin: 0 auto 10px auto;
@@ -373,24 +365,20 @@
     border-color: #666;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   }
-
-  /* Updated image styles for full responsiveness and natural display */
   .content-item img {
-    width: 100%;       /* Full width of container */
-    height: auto;      /* Preserve natural aspect ratio */
-    object-fit: contain; 
+    width: 100%;
+    height: auto;
+    max-height: 190px;
+    object-fit: cover;
     border-radius: 8px;
     margin-bottom: 18px;
     transition: max-height 0.3s ease;
     display: block;
-    max-height: none;  /* Remove fixed height limit */
   }
-
   .content-item p {
     font-size: 15.5px; color: #101010; line-height: 1.5;
     margin: 0; text-align: left; flex-grow: 1; word-wrap: break-word;
   }
-
   @media (max-width: 900px) {
     .slide-3 {
       padding: 30px 5vw 40px 5vw;
@@ -420,7 +408,7 @@
       padding: 18px 16px 16px 16px;
     }
     .content-item img {
-      max-height: none; /* Ensure no max height restriction */
+      max-height: 140px;
     }
     .content-item p {
       font-size: 14px;
@@ -439,97 +427,43 @@
     .slide3-subheading-text {
       font-size: 0.8rem;
     }
-    .slide-content-3row-group {
-      grid-template-columns: 1fr;
-      gap: 16px 0;
-      max-width: 100%;
-      padding: 0 0;
-      justify-items: stretch;
-    }
-    .content-item {
-      max-width: 100% !important;
-      min-height: auto;
-      padding: 15px 12px 12px 12px;
-      box-sizing: border-box;
-      width: 100% !important;
-    }
     .content-item img {
-      max-height: none !important; /* Important to override any previous styles */
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      margin-bottom: 12px;
+      max-height: 100px;
     }
     .content-item p {
       font-size: 13px;
-      line-height: 1.4;
     }
   }
 
   /* ================= SLIDE 4, 5, FOOTER from FIRST code ================= */
-  .slide.slide-4 {
-    width: 100vw;
-    background: #d1cccc; 
-    box-sizing: border-box; 
-    padding: 28px 4vw; 
-    font-family: Arial, sans-serif; 
-    display: flex; 
-    justify-content: center; 
-    align-items: flex-start; 
-    min-height: 170px; height: auto;
-    overflow-x: hidden;
-  }
-  .header-icon-section { 
-    width: 100%; max-width: 1100px; margin: 10 auto; padding: 0; box-sizing: border-box; text-align: center;
-  }
-  .header-icon-row { 
-    display: flex; flex-direction: column; gap: 30px; align-items: center; width: 100%;
-  }
-  .icon-row {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: nowrap;
-    width: 100%;
-  }
+  .slide.slide-4 { width: 100%; background: #d1cccc; box-sizing: border-box; padding: 28px 4vw; font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: flex-start; min-height: 170px; height: auto;}
+  .header-icon-section { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0; box-sizing: border-box; text-align: center;}
+  .header-icon-row { display: flex; flex-direction: column; gap: 30px; align-items: center; width: 100%;}
+  .icon-row { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; width: 100%; }
   .header-icon-item img { width: 80px; height: 80px; object-fit: contain; margin-bottom: 8px; display: block; transition: width 0.2s, height 0.2s;}
   .header-icon-item p { font-size: 1rem; color: #444; font-weight: 600; margin: 0; white-space: nowrap;}
-  .header-icon-item { display: flex; flex-direction: column; align-items: center; min-width: 60px; flex: 1 1 0; padding: 5px 3vw; cursor: default;}
-
-  /* Tablet and small laptop responsiveness */
+  .header-icon-item { display: flex; flex-direction: column; align-items: center; min-width: 60px; flex-grow: 1; padding: 5px 3vw 5px 3vw; cursor: default;}
   @media (max-width: 900px) {
     .slide.slide-4 { padding: 11px 1vw; }
-    .header-icon-row { gap: 14px; }
-    .icon-row { gap: 16px; }
-    .header-icon-item img { width: 52px; height: 52px;}
+    .header-icon-row { gap: 11px; }
+    .icon-row { gap: 10px; }
+    .header-icon-item img { width: 48px; height: 48px;}
     .header-icon-item p { font-size: 13px; }
   }
-
-  /* Advanced mobile responsiveness below */
   @media (max-width: 600px) {
-    .header-icon-row {
-      gap: 6px;
-    }
-    .icon-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2vw 2vw;
-      width: 100%;
-      justify-items: center;
-      padding: 0;
-    }
+    .slide.slide-4 { min-height: 75px; padding: 8px 2vw; }
+    .icon-row { flex-wrap: wrap; gap: 3vw; justify-content: center;}
     .header-icon-item {
-      min-width: 0;
-      flex: unset;
-      padding: 2vw 0;
-      margin-bottom: 0;
+      flex-basis: 44vw;
+      padding: 3px 3px;
+      min-width: 38vw;
+      margin-bottom: 1vw;
     }
-    .header-icon-item img { width: 28vw; max-width: 62px; height: auto;}
-    .header-icon-item p { font-size: 13px;}
+    .header-icon-item img { width: 36px; height: 36px;}
+    .header-icon-item p { font-size: 11px;}
   }
-
   .slide.slide-5 {
-    width: 100vw;
+    width: 100%;
     background: #f0f0f0;
     box-sizing: border-box;
     padding: 35px 7vw 35px 7vw;
@@ -539,7 +473,6 @@
     align-items: flex-start;
     min-height: 800px;
     height: auto;
-    overflow-x: hidden;
   }
   .why-heading {
     font-size: 2.15rem;
@@ -615,8 +548,7 @@
     box-sizing: border-box;
     padding: 20px 6vw 6px 6vw; color: #222;
     text-align: center;
-    margin-top: 22px; width: 100vw;
-    overflow-x: hidden;
+    margin-top: 22px; width: 100%;
   }
   .footer-col.contact-col h4 {
     font-size: 2rem; font-weight: 700; margin-bottom: 0; margin-top: -18px; color: #565757; text-align: center;
@@ -648,182 +580,3 @@
     .footer-col.contact-col h4 { font-size: 15px; margin-top: 0;}
   }
   #slide-2, #slide-3, #slide-4, #slide-5, #footer { scroll-margin-top: 90px; }
-
-  /* ====================== Additional media queries to cover your device widths ====================== */
-
-  /* Small phones — 320px */
-  @media (max-width: 320px) {
-    .slide-content-left h2 { font-size: 14px; }
-    .slide-subtext { font-size: 9px; }
-    .contact-btn {
-      width: 90vw; max-width: 110px; font-size: 10px; height: 24px; line-height: 24px;
-    }
-    .content-item p { font-size: 12px; }
-  }
-
-  /* Medium phones — 321px to 360px */
-  @media (min-width: 321px) and (max-width: 360px) {
-    .slide-content-left h2 { font-size: 15px; }
-    .slide-subtext { font-size: 10px; }
-    .contact-btn {
-      width: 95vw; max-width: 115px; font-size: 11px; height: 26px; line-height: 26px;
-    }
-    .content-item p { font-size: 12.5px; }
-  }
-
-  /* Regular phones — 361px to 375px */
-  @media (min-width: 321px) and (max-width: 360px) {
-    .slide-content-left h2 { font-size: 16px; }
-    .slide-subtext { font-size: 11px; }
-    .contact-btn {
-      width: 95vw; max-width: 120px; font-size: 12px; height: 28px; line-height: 28px;
-    }
-    .content-item p { font-size: 13px; }
-  }
-
-  /* Large phones — 376px to 414px */
-  @media (min-width: 376px) and (max-width: 414px) {
-    .slide-content-left h2 { font-size: 18px; }
-    .slide-subtext { font-size: 12px; }
-    .contact-btn {
-      width: 90vw; max-width: 130px; font-size: 13px; height: 30px; line-height: 30px;
-    }
-    .content-item p { font-size: 13.5px; }
-  }
-
-  /* Phablets — 415px to 425px */
-  @media (min-width: 415px) and (max-width: 425px) {
-    .slide-content-left h2 { font-size: 19px; }
-    .slide-subtext { font-size: 13px; }
-    .contact-btn {
-      width: 90vw; max-width: 135px; font-size: 14px; height: 32px; line-height: 32px;
-    }
-    .content-item p { font-size: 14px; }
-  }
-
-  /* Small tablets — 426px to 600px */
-  @media (min-width: 426px) and (max-width: 600px) {
-    .slide-content-left h2 { font-size: 20px; }
-    .slide-subtext { font-size: 14px; }
-    .contact-btn {
-      width: 85vw; max-width: 140px; font-size: 15px; height: 34px; line-height: 34px;
-    }
-    .content-item p { font-size: 14.5px; }
-  }
-
-  /* Portrait tablets — 601px to 768px */
-  @media (min-width: 601px) and (max-width: 768px) {
-    .slide-content-left h2 { font-size: 22px; }
-    .slide-subtext { font-size: 15px; }
-    .contact-btn {
-      width: 80vw; max-width: 160px; font-size: 16px; height: 36px; line-height: 36px;
-    }
-    .content-item p { font-size: 15px; }
-    .slide3-main-heading {
-      font-size: 1.1rem;
-    }
-  }
-
-  /* Landscape tablets / small laptops — 769px to 1024px */
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .slide-content-left h2 { font-size: 26px; }
-    .slide-subtext { font-size: 17px; }
-    .contact-btn {
-      width: 75vw; max-width: 180px; font-size: 17px; height: 38px; line-height: 38px;
-    }
-    .content-item p { font-size: 16px; }
-    .slide3-main-heading {
-      font-size: 1.2rem;
-    }
-  }
-
-  /* Small laptops — 1025px to 1280px */
-  @media (min-width: 1025px) and (max-width: 1280px) {
-    .slide-content-left h2 { font-size: 30px; }
-    .slide-subtext { font-size: 18px; }
-    .contact-btn {
-      width: 70vw; max-width: 190px; font-size: 18px; height: 40px; line-height: 40px;
-    }
-    .content-item p { font-size: 17px; }
-    .slide3-main-heading {
-      font-size: 1.3rem;
-    }
-  }
-
-  /* Standard laptops — 1281px to 1366px */
-  @media (min-width: 1281px) and (max-width: 1366px) {
-    .slide-content-left h2 { font-size: 34px; }
-    .slide-subtext { font-size: 20px; }
-    .contact-btn {
-      width: 60vw; max-width: 200px; font-size: 19px; height: 42px; line-height: 42px;
-    }
-    .content-item p { font-size: 18px; }
-    .slide3-main-heading {
-      font-size: 1.4rem;
-    }
-  }
-
-  /* Wider laptops — 1367px to 1440px */
-  @media (min-width: 1367px) and (max-width: 1440px) {
-    .slide-content-left h2 { font-size: 38px; }
-    .slide-subtext { font-size: 22px; }
-    .contact-btn {
-      width: 50vw; max-width: 210px; font-size: 20px; height: 44px; line-height: 44px;
-    }
-    .content-item p { font-size: 19px; }
-    .slide3-main-heading {
-      font-size: 1.5rem;
-    }
-  }
-
-  /* Large laptops / small desktops — 1441px to 1600px */
-  @media (min-width: 1441px) and (max-width: 1600px) {
-    .slide-content-left h2 { font-size: 42px; }
-    .slide-subtext { font-size: 23px; }
-    .contact-btn {
-      width: 45vw; max-width: 220px; font-size: 21px; height: 46px; line-height: 46px;
-    }
-    .content-item p { font-size: 20px; }
-    .slide3-main-heading {
-      font-size: 1.6rem;
-    }
-  }
-
-  /* Standard desktops — 1601px to 1920px */
-  @media (min-width: 1601px) and (max-width: 1920px) {
-    .slide-content-left h2 { font-size: 46px; }
-    .slide-subtext { font-size: 24px; }
-    .contact-btn {
-      width: 40vw; max-width: 230px; font-size: 22px; height: 48px; line-height: 48px;
-    }
-    .content-item p { font-size: 21px; }
-    .slide3-main-heading {
-      font-size: 1.7rem;
-    }
-  }
-
-  /* Full HD desktops — 1921px to 2048px */
-  @media (min-width: 1921px) and (max-width: 2048px) {
-    .slide-content-left h2 { font-size: 50px; }
-    .slide-subtext { font-size: 25px; }
-    .contact-btn {
-      width: 35vw; max-width: 240px; font-size: 23px; height: 50px; line-height: 50px;
-    }
-    .content-item p { font-size: 22px; }
-    .slide3-main-heading {
-      font-size: 1.8rem;
-    }
-  }
-
-  /* 2K screens and up (2049px and above) */
-  @media (min-width: 2049px) {
-    .slide-content-left h2 { font-size: 54px; }
-    .slide-subtext { font-size: 26px; }
-    .contact-btn {
-      width: 30vw; max-width: 250px; font-size: 24px; height: 52px; line-height: 52px;
-    }
-    .content-item p { font-size: 23px; }
-    .slide3-main-heading {
-      font-size: 1.9rem;
-    }
-  }
