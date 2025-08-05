@@ -1,33 +1,29 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+const menuToggleBtn = document.querySelector('.menu-toggle');
 const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-const mobileMenuClose = document.getElementById('mobileMenuClose');
+const mobileMenuCloseBtn = document.getElementById('mobileMenuClose');
 const body = document.body;
 
 
-// Open mobile menu (show drawer & overlay)
 function openMobileMenu() {
-mobileMenuDrawer.classList.add('show');
-mobileMenuOverlay.classList.add('show');
-menuToggle.setAttribute('aria-expanded', 'true');
-body.style.overflow = 'hidden'; // prevent body scroll
-mobileMenuDrawer.focus();
+mobileMenuOverlay.hidden = false;
+setTimeout(() => mobileMenuOverlay.classList.add('open'), 10);
+menuToggleBtn.setAttribute('aria-expanded', 'true');
+body.style.overflow = 'hidden';
+mobileMenuOverlay.focus();
 }
-
-
-// Close mobile menu
 function closeMobileMenu() {
-mobileMenuDrawer.classList.remove('show');
-mobileMenuOverlay.classList.remove('show');
-menuToggle.setAttribute('aria-expanded', 'false');
+mobileMenuOverlay.classList.remove('open');
+menuToggleBtn.setAttribute('aria-expanded', 'false');
 body.style.overflow = '';
-menuToggle.focus();
+setTimeout(() => {
+mobileMenuOverlay.hidden = true;
+}, 400);
+menuToggleBtn.focus();
 }
 
 
-// Event listeners:
-menuToggle.addEventListener('click', () => {
-if (mobileMenuDrawer.classList.contains('show')) {
+menuToggleBtn.addEventListener('click', () => {
+if (mobileMenuOverlay.classList.contains('open')) {
 closeMobileMenu();
 } else {
 openMobileMenu();
@@ -35,51 +31,54 @@ openMobileMenu();
 });
 
 
-mobileMenuClose.addEventListener('click', closeMobileMenu);
-mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+mobileMenuCloseBtn.addEventListener('click', closeMobileMenu);
 
 
-// Close menu on link click inside menu
-mobileMenuDrawer.querySelectorAll('a.mobile-link').forEach(link => {
+mobileMenuOverlay.querySelectorAll('a.mobile-link').forEach(link => {
 link.addEventListener('click', closeMobileMenu);
 });
 
 
-// Close menu on ESC key press
 document.addEventListener('keydown', (e) => {
-if (e.key === 'Escape' && mobileMenuDrawer.classList.contains('show')) {
+if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('open')) {
 closeMobileMenu();
 }
 });
 
 
-// Smooth scrolling for all nav links (both desktop and mobile)
+mobileMenuOverlay.addEventListener('click', (e) => {
+if (e.target === mobileMenuOverlay) {
+closeMobileMenu();
+}
+});
+
+
 function smoothScroll(event) {
 if(event.currentTarget.hash) {
 event.preventDefault();
 const target = document.querySelector(event.currentTarget.hash);
-if(target) {
-target.scrollIntoView({behavior: 'smooth'});
+if(target) target.scrollIntoView({behavior: 'smooth'});
+closeMobileMenu();
 }
 }
-}
-document.querySelectorAll('.nav-tabs a, .mobile-menu-tabs a').forEach(link => {
+
+
+document.querySelectorAll('.nav-tabs a, .mobile-menu-items a').forEach(link => {
 link.addEventListener('click', smoothScroll);
 });
 
 
-// Contact buttons scroll to footer and close mobile menu if open
 function scrollToFooter() {
-document.getElementById('footer').scrollIntoView({behavior: 'smooth'});
-if (mobileMenuDrawer.classList.contains('show')) {
+const footer = document.getElementById('footer');
+if (footer) footer.scrollIntoView({behavior: 'smooth'});
 closeMobileMenu();
 }
+const contactBtn = document.getElementById('contact-button-navbar');
+if (contactBtn) {
+contactBtn.addEventListener('click', scrollToFooter);
 }
-document.getElementById('contact-button-navbar').addEventListener('click', scrollToFooter);
-document.getElementById('contact-button-slide2').addEventListener('click', scrollToFooter);
 
 
-// Search icon alert placeholder
 document.querySelector('.search-icon').addEventListener('click', () => {
 alert('Search functionality coming soon!');
 });
